@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Achoo!</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: monospace;
+            background-color: #0b1724;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo1 img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .generated-password {
+            font-size: 18px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            background-color: #142941;
+            color: #fff;
+            border-radius: 8px;
+            padding: 0 200px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .content input[type="password"],
+        .content button {
+            margin: 0 5px;
+            height: 40px;
+            width: 310px;
+            border-radius: 5px;
+            padding: 0 15px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #142941;
+            border: 1px solid #3d3d3d;
+            text-align: center;
+        }
+
+        .content button {
+            border: none;
+            cursor: pointer;
+        }
+
+        .content button:hover {
+            background-color: #0b1724;
+        }
+
+        .full-image {
+            position: fixed;
+            bottom: 1px;
+            right: 180px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .full-image img {
+            width: 100px;
+            height: auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://i.postimg.cc/q75kKCwp/Loop-Circular-Dots.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: blur(50px);
+            z-index: -1;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 8px;
+
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+/* Animation properties for hell.png */
+.animated-image {
+            animation-name: example;
+            animation-duration: 3s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes example {
+            0% {
+                opacity: 1;
+                width: 100px;
+                height: auto;
+                color: red;
+                filter: hue-rotate(0deg);
+            }
+            25% {
+                opacity: 0.5;
+                width: 100px;
+                height: auto;
+                color: green;
+                filter: hue-rotate(90deg);
+            }
+            50% {
+                opacity: 0.3;
+                width: 100px;
+                height: auto;
+                color: blue;
+                filter: hue-rotate(180deg);
+            }
+            75% {
+                opacity: 0.7;
+                width: 100px;
+                height: auto;
+                color: yellow;
+                filter: hue-rotate(270deg);
+            }
+            100% {
+                opacity: 1;
+                width: 100px;
+                height: auto;
+                color: red;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+
+        /* Styling for the bottom bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90px; /* Adjust the height as needed */
+            background-image: url('https://gcdnb.pbrd.co/images/N1xvLGeal6jW.png?o=1');
+            background-size: fit;
+            background-position: center;
+            z-index: 1000; /* Adjust the z-index if needed */
+        }
+
+        /* Additional styles for the content above the bottom bar */
+        .content-above-bar {
+            /* Add padding or margin to create space for the bottom bar */
+            padding-bottom: 120px; /* Adjust this value to accommodate the height of the bottom bar */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="content-above-bar">
+    <div class="container">
+        <div class="logo1">
+            <img src="https://i.postimg.cc/g2HkDFfj/laptop.png" alt="Logo 1">
+        </div>
+
+        <div class="logo2">
+            <img src="https://i.postimg.cc/901p3tFZ/New-Project-15.png" alt="Logo 2">
+        </div>
+
+        <div class="generated-password">
+            <p><span id="generatedPassword"></span></p>
+        </div>
+
+        <div class="content">
+            <input type="password" id="passwordInput" placeholder="You are standing in an open field...">
+            <button onclick="checkPassword()">Open Mailbox</button>
+        </div>
+    </div>
+
+    <div class="full-image" onclick="openModal()">
+        <img src="https://i.postimg.cc/Y9fsH6TR/hell.png" alt="Thumbnail">
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img src="https://i.postimg.cc/Njx0nSjP/Untitled-2.png" alt="Full Image" onclick="closeModal()">
+        </div>
+    </div>
+
+    <div class="full-image" onclick="openModal()">
+        <img class="animated-image" src="https://i.postimg.cc/Y9fsH6TR/hell.png" alt="Thumbnail">
+    </div>
+</div>
+
+<div class="bottom-bar"></div>
+
+    <script>
+        function generatePassword() {
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=';
+            var password = '';
+
+            while (password.length < 26) {
+                password += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+
+            return password;
+        }
+
+        function removeEandI(password) {
+            return password.replace(/[eiEI]/g, '');
+        }
+
+        function checkPassword() {
+            var inputPassword = document.getElementById('passwordInput').value;
+            var generatedPassword = document.getElementById('generatedPassword').textContent;
+
+            var sanitizedGeneratedPassword = removeEandI(generatedPassword);
+
+            if (inputPassword === sanitizedGeneratedPassword) {
+                window.location.href = 'https://hoax.world';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+
+        window.onload = function() {
+            var generatedPassword = generatePassword();
+            document.getElementById('generatedPassword').textContent = generatedPassword;
+        };
+
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
