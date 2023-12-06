@@ -78,13 +78,15 @@
             position: fixed;
             bottom: 1px;
             right: 180px;
+            width: 50px;
+            height: 95px;
             cursor: pointer;
             z-index: 1001;
         }
 
         .full-image img {
             width: 100px;
-            height: auto;
+            height: 100px;
         }
 
         .modal {
@@ -100,7 +102,7 @@
 
         .modal::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -131,34 +133,48 @@
 /* Animation properties for hell.png */
 .animated-image {
             animation-name: example;
-            animation-duration: 3s;
-            animation-timing-function: ease-in-out;
+            animation-duration: 2s;
+            animation-timing-function:ease-in-out;
             animation-iteration-count: infinite;
+            position:fixed;
+            bottom: 1px;
+            right: 70px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 1001;
+
+
         }
+
+        .animated-image img {
+    width: 80px; /* Adjust the width */
+    height: auto; /* Set 'auto' for proportional height */
+}
 
         @keyframes example {
             0% {
-                opacity: 1;
+                opacity: .5;
                 width: 100px;
                 height: auto;
                 color: red;
                 filter: hue-rotate(0deg);
             }
-            25% {
+            10% {
                 opacity: 0.5;
                 width: 100px;
                 height: auto;
                 color: green;
                 filter: hue-rotate(90deg);
             }
-            50% {
-                opacity: 0.3;
+            20% {
+                opacity: 0.5;
                 width: 100px;
                 height: auto;
-                color: blue;
+                color: rgb(0, 225, 255);
                 filter: hue-rotate(180deg);
             }
-            75% {
+            30% {
                 opacity: 0.7;
                 width: 100px;
                 height: auto;
@@ -166,10 +182,10 @@
                 filter: hue-rotate(270deg);
             }
             100% {
-                opacity: 1;
+                opacity: .5;
                 width: 100px;
                 height: auto;
-                color: red;
+                color: rgb(255, 255, 255);
                 filter: hue-rotate(360deg);
             }
         }
@@ -219,7 +235,7 @@
         </div>
     </div>
 
-    <div class="full-image" onclick="openModal()">
+    <div class="animated-image" onclick="openModal()">
         <img src="https://i.postimg.cc/Y9fsH6TR/hell.png" alt="Thumbnail">
     </div>
 
@@ -230,9 +246,7 @@
         </div>
     </div>
 
-    <div class="full-image" onclick="openModal()">
-        <img class="animated-image" src="https://i.postimg.cc/Y9fsH6TR/hell.png" alt="Thumbnail">
-    </div>
+
 </div>
 
 <div class="bottom-bar"></div>
